@@ -1,35 +1,26 @@
 # Distributed System Reference
 
-A local-first reference implementation of production-oriented distributed-system patterns.
+**Public Reference Implementation — No Proprietary IP**
 
-The repository focuses on boundaries and failure behavior rather than framework complexity.
-
-## Demonstrated patterns
-
-- service boundaries
-- asynchronous work
-- retries
-- idempotency
-- durable local state
-- health checks
-- explicit failure handling
+A local-first Python reference implementation of production-oriented distributed-system patterns, focused on boundaries and failure behavior rather than framework complexity.
 
 ## Architecture
 
-`Request → Command Boundary → Idempotency Check → Queue → Worker → Persistence → Event`
+`Request → Command Boundary → Idempotency → Queue → Worker → Persistence/Event`
 
-The implementation is dependency-light and runnable locally.
+## Demonstrated patterns
+
+- explicit command identity
+- asynchronous local queue boundary
+- idempotency control
+- retry and failure exhaustion
+- dependency-light execution
+- deterministic tests for failure paths
+
+## Scope
+
+Synthetic/local behavior only. No proprietary production architecture, credentials, cloud resources, or private operational configuration is included. This repository is independent technical evidence.
 
 ## Run
 
-```bash
-python -m src.main
-```
-
-## Design goals
-
-- make failure states explicit
-- prevent duplicate processing
-- keep components independently testable
-- make operational state observable
-- avoid unnecessary infrastructure dependencies
+`python -m pytest -q`
