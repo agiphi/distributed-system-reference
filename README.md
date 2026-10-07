@@ -24,3 +24,14 @@ Synthetic/local behavior only. No proprietary production architecture, credentia
 ## Run
 
 `python -m pytest -q`
+
+## Architecture
+
+```mermaid
+flowchart LR
+  A[Request] --> B[Command Boundary]
+  B --> C[Idempotency]
+  C --> D[Queue]
+  D --> E[Worker]
+  E --> F[Persistence / Event]
+```
